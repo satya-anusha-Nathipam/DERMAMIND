@@ -280,6 +280,23 @@ It is not a medical diagnostic tool and must not be used as a substitute for pro
 
 AI predictions may be inaccurate. Always consult a qualified dermatologist for proper medical evaluation.
 
+## Screenshots
+
+### 1. Homepage
+![Homepage](screenshots/homepage.png)
+
+### 2. User Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### 3. Skin Lesion Image Upload
+![Upload Page](screenshots/upload.png)
+
+### 4. AI Analysis Results
+![Analysis Results](screenshots/results.png)
+
+### 5. Explainable AI – Occlusion Sensitivity
+![XAI Heatmap](screenshots/xai-heatmap.png)
+
 ## Author
 
 Developed as an AI-powered healthcare technology project.
