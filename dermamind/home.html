@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dermamind — AI Skin Cancer Detection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-icon">🧬</span>
+        <span class="logo-text">Dermamind</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" onclick="openModal('loginModal')">Login</button>
+        <button class="btn btn-primary" onclick="openModal('signupModal')">Get Started</button>
+      </div>
+      <button class="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-background">
+      <div class="hero-gradient"></div>
+      <div class="hero-pattern"></div>
+    </div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          AI-Powered Healthcare
+        </div>
+        <h1 class="hero-title">
+          Early Skin Cancer<br>
+          <span class="gradient-text">Detection</span> Made Simple
+        </h1>
+        <p class="hero-description">
+          Dermamind combines advanced AI technology with dermatological expertise to provide 
+          early skin cancer screening. Get instant risk assessments and connect with 
+          specialists — all from the comfort of your home.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" onclick="openModal('signupModal')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+            Start Screening Free
+          </button>
+          <button class="btn btn-outline btn-lg" onclick="scrollToSection('features')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+            Learn More
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">50K+</span>
+            <span class="stat-label">Scans Completed</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">98%</span>
+            <span class="stat-label">Accuracy Rate</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">AI Available</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="card-glow"></div>
+          <div class="hero-card-content">
+            <div class="ai-mockup">
+              <div class="mockup-header">
+                <div class="mockup-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <span class="mockup-title">AI Analysis</span>
+              </div>
+              <div class="mockup-body">
+                <div class="analysis-result">
+                  <div class="result-header">
+                    <span class="risk-badge high">High Risk</span>
+                    <span class="confidence">92% Confidence</span>
+                  </div>
+                  <div class="result-chart">
+                    <div class="chart-bar">
+                      <div class="chart-fill benign" style="width: 15%"></div>
+                      <span>15% Benign</span>
+                    </div>
+                    <div class="chart-bar">
+                      <div class="chart-fill malignant" style="width: 85%"></div>
+                      <span>85% Malignant</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floating-card card-1">
+          <span class="floating-icon">🔬</span>
+          <span>AI Analysis</span>
+        </div>
+        <div class="floating-card card-2">
+          <span class="floating-icon">🏥</span>
+          <span>Expert Care</span>
+        </div>
+        <div class="floating-card card-3">
+          <span class="floating-icon">📊</span>
+          <span>Instant Results</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll to explore</span>
+      <div class="scroll-indicator"></div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">Features</span>
+        <h2 class="section-title">Powerful AI-Powered Features</h2>
+        <p class="section-description">
+          Our advanced machine learning models provide accurate skin cancer risk assessments 
+          with explainable AI explanations.
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <h3>Instant Screening</h3>
+          <p>Upload a skin image and get AI-powered analysis results within seconds.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M12 22v-10M12 2v10"/></svg>
+          </div>
+          <h3>Explainable AI</h3>
+          <p>Understand the reasoning behind each prediction with heatmaps and detailed explanations.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3>Hospital Finder</h3>
+          <p>Discover nearby dermatology specialists and book appointments directly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>AI Health Assistant</h3>
+          <p>Get answers to your skin health questions anytime with our 24/7 chatbot.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          </div>
+          <h3>Medical Reports</h3>
+          <p>Download detailed screening reports to share with your healthcare provider.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Scan History</h3>
+          <p>Track your skin health over time with organized scan history.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="section-container">
+      <div class="about-grid">
+        <div class="about-content">
+          <span class="section-badge">About Dermamind</span>
+          <h2 class="section-title">Democratizing Skin Cancer Early Detection</h2>
+          <p class="about-text">
+            Skin cancer is one of the most treatable forms of cancer when detected early. 
+            Yet millions of people delay screening due to accessibility issues, cost concerns, 
+            or lack of awareness.
+          </p>
+          <p class="about-text">
+            Dermamind bridges this gap by combining cloud AI with dermatological expertise, 
+            making early skin cancer screening accessible to everyone, anywhere, anytime.
+          </p>
+          <div class="about-features">
+            <div class="about-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              <span>FDA-registered AI technology</span>
+            </div>
+            <div class="about-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              <span>HIPAA compliant data handling</span>
+            </div>
+            <div class="about-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              <span>98% accuracy rate</span>
+            </div>
+            <div class="about-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              <span>24/7 AI availability</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual">
+          <div class="about-card">
+            <div class="about-card-header">
+              <span class="about-card-icon">🧬</span>
+              <span>AI Technology</span>
+            </div>
+            <div class="about-card-body">
+              <div class="accuracy-ring">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="45" fill="none" stroke="#e2e8f0" stroke-width="8"/>
+                  <circle cx="50" cy="50" r="45" fill="none" stroke="url(#gradient)" stroke-width="8" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="5"/>
+                  <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#3b82f6"/>
+                      <stop offset="100%" stop-color="#06b6d4"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="accuracy-text">
+                  <span class="accuracy-number">98%</span>
+                  <span class="accuracy-label">Accuracy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="section-container">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+          <h2>Ready to Start Your Screening?</h2>
+          <p>Join thousands of users who have taken control of their skin health with Dermamind.</p>
+          <button class="btn btn-white btn-lg" onclick="openModal('signupModal')">
+            Get Started Free
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <span class="logo-icon">🧬</span>
+            <span class="logo-text">Dermamind</span>
+          </a>
+          <p>AI-powered early skin cancer detection for everyone, everywhere.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#">Pricing</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <a href="#" onclick="showTerms(); return false;">Terms</a>
+          <a href="#" onclick="showPrivacy(); return false;">Privacy</a>
+          <a href="#">Disclaimer</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Dermamind. All rights reserved.</p>
+        <p class="disclaimer">
+          ⚠️ Dermamind is an AI-powered screening tool for educational purposes only. 
+          It does not provide medical diagnoses. Always consult a dermatologist for professional advice.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal-overlay">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <h3>Welcome Back</h3>
+        <p>Sign in to continue to Dermamind</p>
+      </div>
+      <form class="modal-form" onsubmit="event.preventDefault(); login();">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPass" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+      </form>
+      <p class="modal-footer-text">
+        Don't have an account? <a href="#" onclick="closeModal(); openModal('signupModal');">Sign up</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div id="signupModal" class="modal-overlay">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <h3>Create Account</h3>
+        <p>Join Dermamind for early skin cancer detection</p>
+      </div>
+      <form class="modal-form" onsubmit="event.preventDefault(); signup();">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="signupName" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="signupEmail" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="signupPass" placeholder="Create a password (min 6 chars)" required>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="termsCheck" required>
+          <label for="termsCheck">I agree to the <a href="#" onclick="showTerms(); return false;">Terms</a> and <a href="#" onclick="showPrivacy(); return false;">Privacy Policy</a></label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+      </form>
+      <p class="modal-footer-text">
+        Already have an account? <a href="#" onclick="closeModal(); openModal('loginModal');">Sign in</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="api-client.js?v=phase2"></script>
+  <script src="auth.js"></script>
+  <script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

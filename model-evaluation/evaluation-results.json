@@ -1,0 +1,183 @@
+{
+  "generatedAt": "2026-09-13T14:38:04.629Z",
+  "model": "sazio/skin-mole-vit-onnx (model_quantized.onnx)",
+  "testSet": {
+    "source": "user-provided HAM10000 subset",
+    "totalImages": 300,
+    "csvPath": "./test-data/test-data/test_labels.csv"
+  },
+  "overallAccuracy": 0.8466666666666667,
+  "macro": {
+    "precision": 0.8422869813113716,
+    "recall": 0.7419120465138255,
+    "f1": 0.7463009551160964,
+    "aucOneVsRest": 0.9801347854948012
+  },
+  "weighted": {
+    "precision": 0.8945683665927568,
+    "recall": 0.8466666666666667,
+    "f1": 0.8413393430525917
+  },
+  "perClass": {
+    "benign_keratosis-like_lesions": {
+      "tp": 14,
+      "fp": 0,
+      "fn": 24,
+      "tn": 262,
+      "support": 38,
+      "precision": 1,
+      "recall": 0.3684210526315789,
+      "specificity": 1,
+      "f1": 0.5384615384615384,
+      "auc": 0.9692647649658498
+    },
+    "basal_cell_carcinoma": {
+      "tp": 6,
+      "fp": 0,
+      "fn": 7,
+      "tn": 287,
+      "support": 13,
+      "precision": 1,
+      "recall": 0.46153846153846156,
+      "specificity": 1,
+      "f1": 0.631578947368421,
+      "auc": 0.9860627177700348
+    },
+    "actinic_keratoses": {
+      "tp": 5,
+      "fp": 6,
+      "fn": 3,
+      "tn": 286,
+      "support": 8,
+      "precision": 0.45454545454545453,
+      "recall": 0.625,
+      "specificity": 0.9794520547945206,
+      "f1": 0.5263157894736842,
+      "auc": 0.9755993150684932
+    },
+    "vascular_lesions": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 1,
+      "tn": 292,
+      "support": 8,
+      "precision": 1,
+      "recall": 0.875,
+      "specificity": 1,
+      "f1": 0.9333333333333333,
+      "auc": 1
+    },
+    "melanocytic_Nevi": {
+      "tp": 193,
+      "fp": 12,
+      "fn": 8,
+      "tn": 87,
+      "support": 201,
+      "precision": 0.9414634146341463,
+      "recall": 0.9601990049751243,
+      "specificity": 0.8787878787878788,
+      "f1": 0.9507389162561576,
+      "auc": 0.9736670184431379
+    },
+    "melanoma": {
+      "tp": 28,
+      "fp": 28,
+      "fn": 3,
+      "tn": 241,
+      "support": 31,
+      "precision": 0.5,
+      "recall": 0.9032258064516129,
+      "specificity": 0.895910780669145,
+      "f1": 0.6436781609195402,
+      "auc": 0.9563496822160931
+    },
+    "dermatofibroma": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 299,
+      "support": 1,
+      "precision": 1,
+      "recall": 1,
+      "specificity": 1,
+      "f1": 1,
+      "auc": 1
+    }
+  },
+  "confusionMatrix": {
+    "classes": [
+      "benign_keratosis-like_lesions",
+      "basal_cell_carcinoma",
+      "actinic_keratoses",
+      "vascular_lesions",
+      "melanocytic_Nevi",
+      "melanoma",
+      "dermatofibroma"
+    ],
+    "matrix": {
+      "benign_keratosis-like_lesions": {
+        "benign_keratosis-like_lesions": 14,
+        "basal_cell_carcinoma": 0,
+        "actinic_keratoses": 2,
+        "vascular_lesions": 0,
+        "melanocytic_Nevi": 6,
+        "melanoma": 16,
+        "dermatofibroma": 0
+      },
+      "basal_cell_carcinoma": {
+        "benign_keratosis-like_lesions": 0,
+        "basal_cell_carcinoma": 6,
+        "actinic_keratoses": 4,
+        "vascular_lesions": 0,
+        "melanocytic_Nevi": 2,
+        "melanoma": 1,
+        "dermatofibroma": 0
+      },
+      "actinic_keratoses": {
+        "benign_keratosis-like_lesions": 0,
+        "basal_cell_carcinoma": 0,
+        "actinic_keratoses": 5,
+        "vascular_lesions": 0,
+        "melanocytic_Nevi": 0,
+        "melanoma": 3,
+        "dermatofibroma": 0
+      },
+      "vascular_lesions": {
+        "benign_keratosis-like_lesions": 0,
+        "basal_cell_carcinoma": 0,
+        "actinic_keratoses": 0,
+        "vascular_lesions": 7,
+        "melanocytic_Nevi": 1,
+        "melanoma": 0,
+        "dermatofibroma": 0
+      },
+      "melanocytic_Nevi": {
+        "benign_keratosis-like_lesions": 0,
+        "basal_cell_carcinoma": 0,
+        "actinic_keratoses": 0,
+        "vascular_lesions": 0,
+        "melanocytic_Nevi": 193,
+        "melanoma": 8,
+        "dermatofibroma": 0
+      },
+      "melanoma": {
+        "benign_keratosis-like_lesions": 0,
+        "basal_cell_carcinoma": 0,
+        "actinic_keratoses": 0,
+        "vascular_lesions": 0,
+        "melanocytic_Nevi": 3,
+        "melanoma": 28,
+        "dermatofibroma": 0
+      },
+      "dermatofibroma": {
+        "benign_keratosis-like_lesions": 0,
+        "basal_cell_carcinoma": 0,
+        "actinic_keratoses": 0,
+        "vascular_lesions": 0,
+        "melanocytic_Nevi": 0,
+        "melanoma": 0,
+        "dermatofibroma": 1
+      }
+    }
+  }
+}

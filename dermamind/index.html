@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dermamind — AI Skin Lesion Screening</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+<meta name="theme-color" content="#2563eb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <h2>Dermamind</h2>
+  <p class="tagline">AI-Powered Skin Screening</p>
+
+  <nav>
+    <button class="navBtn active" data-section="dashboard">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      <span>Dashboard</span>
+    </button>
+    <button class="navBtn" data-section="analysis">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <span>AI Analysis</span>
+    </button>
+    <button class="navBtn" data-section="history">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      <span>Scan History</span>
+    </button>
+    <button class="navBtn" data-section="hospitals">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+      <span>Find Hospitals</span>
+    </button>
+    <button class="navBtn" data-section="appointments">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      <span>Book Appointment</span>
+    </button>
+    <button class="navBtn" data-section="profile">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path></svg>
+      <span>Personal Details</span>
+    </button>
+    <button class="navBtn" data-section="modelPerformance">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      <span>Model Performance</span>
+    </button>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn" id="installBtn" onclick="installApp()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <span>Install App</span>
+    </button>
+    <button class="logout-btn" id="logoutBtn" onclick="logoutUser()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+      <span>Logout</span>
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <header class="main-header">
+    <div>
+      <h1>Intelligent Cloud AI Skin Screening</h1>
+      <p class="subtitle">Upload your skin image for AI-powered analysis and risk assessment</p>
+    </div>
+    <button id="mobileNavToggle" class="mobile-nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </header>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="section active">
+
+    <div class="stats-row">
+      <div class="stat-card" onclick="goToSection('analysis')">
+        <div class="stat-icon">🧠</div>
+        <div class="stat-info">
+          <div class="stat-number" id="totalScans">0</div>
+          <div class="stat-label">AI Scans</div>
+        </div>
+      </div>
+      <div class="stat-card" onclick="goToSection('hospitals')">
+        <div class="stat-icon">🏥</div>
+        <div class="stat-info">
+          <div class="stat-number" id="hospitalCount">0</div>
+          <div class="stat-label">Nearby Hospitals</div>
+        </div>
+      </div>
+      <div class="stat-card" onclick="goToSection('appointments')">
+        <div class="stat-icon">📅</div>
+        <div class="stat-info">
+          <div class="stat-number" id="totalAppointments">0</div>
+          <div class="stat-label">My Appointments</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="card dashboard-card" data-requires-profile="true" onclick="goToSection('analysis')">
+        <div class="dashboard-card-icon">🧠</div>
+        <h3>AI Skin Analysis</h3>
+        <p>Upload a skin image for AI-powered analysis</p>
+      </div>
+      <div class="card dashboard-card" data-requires-profile="true" onclick="goToSection('hospitals')">
+        <div class="dashboard-card-icon">🏥</div>
+        <h3>Find Specialists</h3>
+        <p>Locate nearby dermatology specialists</p>
+      </div>
+      <div class="card dashboard-card" data-requires-profile="true" onclick="goToSection('appointments')">
+        <div class="dashboard-card-icon">📅</div>
+        <h3>Book Appointment</h3>
+        <p>Schedule with a dermatologist</p>
+      </div>
+      <div class="card dashboard-card" onclick="goToSection('profile')">
+        <div class="dashboard-card-icon"></div>
+        <h3>Personal Details</h3>
+        <p>Manage your contact and emergency information</p>
+      </div>
+      <div class="card dashboard-card" data-requires-profile="true" onclick="goToSection('history')">
+        <div class="dashboard-card-icon">📊</div>
+        <h3>Scan History</h3>
+        <p>View previous scan results</p>
+      </div>
+      <div class="card dashboard-card" data-requires-profile="true" onclick="goToSection('modelPerformance')">
+        <div class="dashboard-card-icon">📈</div>
+        <h3>Model Performance</h3>
+        <p>Real, independently-measured AI accuracy</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Recent Scans</h3>
+      <div id="recentScansPreview">
+        <p class="text-muted">No recent scans. Start your first AI analysis!</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- AI ANALYSIS PAGE -->
+  <section id="analysis" class="section">
+
+    <div class="analysis-header">
+      <h2>🧠 AI Skin Analysis</h2>
+      <p>Advanced deep learning model for skin lesion classification</p>
+    </div>
+
+    <!-- Upload Card -->
+    <div class="card analysis-upload-card">
+      <label class="file-upload-area" for="imageInput">
+        <input type="file" id="imageInput" accept="image/*">
+        <div class="upload-icon">📤</div>
+        <h3>Upload Skin Image</h3>
+        <p>Click to select or drag & drop</p>
+        <span class="upload-formats">PNG, JPG, WEBP (max 10MB) • Best results with clear close-up/dermoscopic lesion images</span>
+      </label>
+      
+      <img id="preview" alt="Preview">
+
+      <!-- Image Quality (Phase 4) -->
+      <div id="imageQualityPanel" class="image-quality-panel hidden">
+        <div class="quality-header">
+          <span>Image Quality:</span>
+          <span id="qualityBadge" class="quality-badge">—</span>
+        </div>
+        <ul id="qualityReasons" class="quality-reasons"></ul>
+        <button id="chooseAnotherBtn" type="button" class="choose-another-btn hidden">Choose Another Image</button>
+      </div>
+
+      <div class="consent-check">
+        <label>
+          <input type="checkbox" id="consent">
+          <span>I agree to <a href="#" onclick="showTerms(); return false;">Terms</a> and <a href="#" onclick="showPrivacy(); return false;">Privacy Policy</a></span>
+        </label>
+      </div>
+      
+      <button id="analyzeBtn" class="analyze-btn-full">
+        Scan
+      </button>
+      <p id="modelStatus" class="model-status">AI model will load when you start your first scan.</p>
+      <p class="model-status" style="margin-top:6px;">⚠️ If a concerning/cancerous category is flagged, DERMAMIND can alert the registered emergency contact by SMS/email after consent.</p>
+      
+      <p class="disclaimer">⚠️ AI screening only. This model classifies dermoscopic skin-lesion images and cannot diagnose cancer. Consult a dermatologist for medical advice.</p>
+    </div>
+
+    <!-- Results -->
+    <div id="resultCard" class="card results-card hidden">
+      <div class="results-header">
+        <h3>🧠 Analysis Results</h3>
+        <span id="resultTimestamp"></span>
+      </div>
+
+      <!-- Classification & Confidence Row -->
+      <div class="results-row">
+        <!-- Classification -->
+        <div class="result-block">
+          <h4>Classification</h4>
+          <div class="class-bars">
+            <div class="class-row">
+              <span class="class-name">Benign</span>
+              <div class="class-bar"><div class="class-fill benign" id="benignScore"></div></div>
+              <span class="class-pct" id="benignValue">0%</span>
+            </div>
+            <div class="class-row">
+              <span class="class-name">Malignant</span>
+              <div class="class-bar"><div class="class-fill malignant" id="malignantScore"></div></div>
+              <span class="class-pct" id="malignantValue">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confidence -->
+        <div class="result-block">
+          <h4>Model Confidence</h4>
+          <div class="confidence-ring"><span id="confidence">0%</span></div>
+          <p class="result-subtext">Top-class probability</p>
+        </div>
+      </div>
+
+      <!-- Model Metrics -->
+      <div class="result-block">
+        <h4>Model Details</h4>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <span class="metric-num" id="precision">—</span>
+            <span class="metric-lbl">Validation Accuracy*</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num" id="recall">—</span>
+            <span class="metric-lbl">Malignant Probability</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num" id="f1score">—</span>
+            <span class="metric-lbl">Top Class</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num" id="accuracy">—</span>
+            <span class="metric-lbl">Inference Engine</span>
+          </div>
+        </div>
+        <p class="result-subtext" style="margin-top:10px;">*The model is a research/education classifier trained on HAM10000; no clinical validation metric is claimed by DERMAMIND.</p>
+      </div>
+
+      <!-- Risk -->
+      <div class="result-block">
+        <h4>Risk Assessment</h4>
+        <p class="result-subtext">Top predicted lesion: <strong id="topClass">Unknown</strong></p>
+        <div class="risk-box">
+          <span id="riskResult" class="risk-badge">-</span>
+          <p id="explanation" class="risk-text"></p>
+        </div>
+      </div>
+
+      <!-- XAI Heatmap (Phase 7) -->
+      <div class="result-block">
+        <h4>Explainable AI (XAI)</h4>
+        <div class="xai-tabs">
+          <button type="button" class="xai-tab active" data-xai-view="original">Original</button>
+          <button type="button" class="xai-tab" data-xai-view="heatmap">Heatmap</button>
+          <button type="button" class="xai-tab" data-xai-view="overlay">Overlay</button>
+        </div>
+        <div class="xai-image-wrap">
+          <img id="xaiImage" alt="Analyzed image">
+          <div id="xaiLoading" class="xai-loading hidden">Generating explanation… this takes a few seconds.</div>
+        </div>
+        <p class="result-subtext">The highlighted regions represent image areas that contributed to the model's prediction. They are not proof of cancer.</p>
+      </div>
+
+      <!-- Multilingual Voice Assistant (Feature 11) -->
+      <div id="voiceAssistant" class="result-block voice-assistant" aria-label="Multilingual voice assistant">
+        <div class="voice-assistant-header">
+          <div>
+            <h4 id="assistantTitle">🗣️ Voice Assistant</h4>
+            <p id="assistantSubtitle" class="result-subtext">Ask about your scan in English, Telugu, or Hindi.</p>
+          </div>
+          <label class="assistant-language-label" for="assistantLanguage">Language
+            <select id="assistantLanguage" aria-label="Assistant language">
+              <option value="en">English</option>
+              <option value="te">తెలుగు</option>
+              <option value="hi">हिंदी</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="assistantResponse" class="assistant-response" aria-live="polite"></div>
+
+        <div class="assistant-suggestions" id="assistantSuggestions">
+          <button type="button" data-assistant-intent="upload">How do I upload an image?</button>
+          <button type="button" data-assistant-intent="prediction">What does my prediction mean?</button>
+          <button type="button" data-assistant-intent="confidence">What does confidence mean?</button>
+          <button type="button" data-assistant-intent="heatmap">What does the heatmap mean?</button>
+          <button type="button" data-assistant-intent="next">What should I do next?</button>
+        </div>
+
+        <div class="assistant-input-row">
+          <input id="assistantText" type="text" autocomplete="off" placeholder="Ask a question…"
+                 aria-label="Ask the voice assistant">
+          <button id="assistantMic" type="button" class="assistant-control" aria-label="Start voice input">🎙️</button>
+          <button id="assistantSend" type="button" class="assistant-send">Send</button>
+        </div>
+
+        <div class="assistant-controls">
+          <button id="assistantSpeak" type="button" class="assistant-control">🔊 Speak</button>
+          <button id="assistantStop" type="button" class="assistant-control" disabled>⏹ Stop Speaking</button>
+          <span id="assistantStatus" class="assistant-status" role="status"></span>
+        </div>
+
+        <p id="assistantDisclaimer" class="assistant-disclaimer"></p>
+      </div>
+
+      <button id="downloadReport" class="download-btn">Download Report</button>
+    </div>
+
+    <!-- Placeholder -->
+    <div id="analysisPlaceholder" class="card placeholder-card">
+      <div class="placeholder-icon">🔬</div>
+      <h3>Ready for Analysis</h3>
+      <p>Upload a skin image to get AI-powered screening results</p>
+    </div>
+
+    <!-- Hospitals -->
+    <div id="hospitalSection" class="card hidden">
+      <h3>🏥 Recommended Hospitals</h3>
+      <div id="hospitalList"></div>
+    </div>
+
+  </section>
+
+  <!-- HISTORY -->
+  <section id="history" class="section">
+    <h2>📊 Scan History</h2>
+    <p class="subtitle">Your past scans, saved to your account. Only visible to you.</p>
+    <div id="historyList"></div>
+  </section>
+
+  <!-- HOSPITALS -->
+  <section id="hospitals" class="section">
+    <h2>🏥 Find Dermatologists Near You</h2>
+    
+    <div id="hospitalsLocationPrompt" class="card">
+      <div class="location-prompt-content">
+        <div class="location-icon">📍</div>
+        <h3>Find Near You</h3>
+        <p>Use your location to find real nearby dermatology clinics and hospitals.</p>
+        <button id="detectLocationBtn" onclick="detectUserLocation()">Detect My Location</button>
+      </div>
+    </div>
+
+    <div id="hospitalsCards" class="hidden">
+      <p id="hospitalsStatus" class="hospitals-status"></p><p class="data-source-note">Live healthcare place data is retrieved from Google Places and displayed directly inside DERMAMIND. Availability and consultation services should be confirmed with the provider.</p>
+      <div id="hospitalsList"></div>
+    </div>
+  </section>
+
+  <!-- PERSONAL DETAILS -->
+  <section id="profile" class="section">
+    <div class="profile-page-header">
+      <div>
+        <h2>Personal Details</h2>
+        <p>Keep your contact and emergency information ready for appointments and dermatologist consultations.</p>
+      </div>
+      <span id="profileStatus" class="profile-status">Not completed</span>
+    </div>
+
+    <div class="profile-grid">
+      <div class="card profile-card">
+        <div class="profile-section-title">
+          <div class="profile-section-icon"></div>
+          <div><h3>Basic Information</h3><p>Your details used to identify and contact you.</p></div>
+        </div>
+        <form id="personalDetailsForm" class="profile-form" novalidate>
+          <div class="form-row">
+            <div class="form-group"><label for="profileName">Full Name <span class="required-mark">*</span></label><input type="text" id="profileName" placeholder="Enter your full name" autocomplete="name" required></div>
+            <div class="form-group"><label for="profilePhone">Phone Number <span class="required-mark">*</span></label><input type="tel" id="profilePhone" placeholder="Enter your phone number" autocomplete="tel" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="profileEmail">Email Address <span class="required-mark">*</span></label><input type="email" id="profileEmail" placeholder="Enter your email" autocomplete="email" required></div>
+            <div class="form-group"><label for="profileDob">Date of Birth</label><input type="date" id="profileDob" autocomplete="bday"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="profileGender">Gender</label><select id="profileGender"><option value="">Prefer not to say</option><option>Female</option><option>Male</option><option>Non-binary</option><option>Other</option></select></div>
+            <div class="form-group"><label for="profileBloodGroup">Blood Group <span class="optional-label">(Optional)</span></label><select id="profileBloodGroup"><option value="">Not specified</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
+          </div>
+          <div class="form-group"><label for="profileCity">City / Location</label><input type="text" id="profileCity" placeholder="e.g. Kakinada"></div>
+
+          <div class="emergency-contact-box">
+            <div class="emergency-heading">
+              <span class="emergency-icon"></span>
+              <div><h3>Emergency Contact <span class="required-pill">Required</span></h3><p>This contact is mandatory so DERMAMIND has someone to reach in an emergency. The contact information must also be OTP-verified.</p></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label for="emergencyName">Contact Name <span class="required-mark">*</span></label><input type="text" id="emergencyName" placeholder="Full name" autocomplete="name" required></div>
+              <div class="form-group"><label for="emergencyRelationship">Relationship <span class="required-mark">*</span></label><select id="emergencyRelationship" required><option value="">Select relationship</option><option>Parent</option><option>Guardian</option><option>Sibling</option><option>Spouse</option><option>Partner</option><option>Friend</option><option>Relative</option><option>Other</option></select></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label for="emergencyPhone">Emergency Contact Number <span class="required-mark">*</span></label><input type="tel" id="emergencyPhone" placeholder="Enter emergency contact number" autocomplete="tel" required></div>
+              <div class="form-group"><label for="emergencyEmail">Email <span class="optional-label">(Optional unless email alerts are selected)</span></label><input type="email" id="emergencyEmail" placeholder="Emergency contact email" autocomplete="email"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label for="emergencyAlertMethod">Emergency Alert Method <span class="required-mark">*</span></label><select id="emergencyAlertMethod" required><option value="sms">Normal SMS</option><option value="email">Email</option><option value="both">SMS + Email</option></select></div>
+              <div class="form-group emergency-alert-consent-wrap"><label class="checkbox-label"><input type="checkbox" id="emergencyAlertConsent" required> I consent to DERMAMIND sending my AI screening alert and basic patient details to this emergency contact if the AI flags a concerning or potentially cancerous lesion. <span class="required-mark">*</span></label></div>
+            </div>
+            <div class="emergency-verification-box">
+              <div class="verification-header"><div><strong>Verify Emergency Contact</strong><p>We send a one-time code to confirm the contact information is reachable.</p></div><span id="emergencyVerificationStatus" class="verification-status unverified">Emergency contact must be verified with OTP</span></div>
+              <button type="button" id="sendOtpBtn" class="secondary-action-btn">Send Verification Code</button>
+              <div id="otpEntryWrap" class="otp-entry-wrap"><label for="emergencyOtp">6-digit verification code</label><div class="otp-row"><input id="emergencyOtp" inputmode="numeric" maxlength="6" pattern="\d{6}" placeholder="123456" autocomplete="one-time-code"><button type="button" id="verifyOtpBtn" class="book-btn">Verify Contact</button></div></div>
+            </div>
+          </div>
+
+          <div class="profile-privacy-note"><strong>Privacy:</strong> Your profile is stored locally in this demo. Emergency alerts are sent only when the AI screening flags a concerning lesion and only after the required emergency-alert consent above. A dermatologist must confirm the result.</div>
+          <button type="submit" id="saveProfileBtn" class="book-btn profile-save-btn">Save Personal Details</button>
+        </form>
+      </div>
+
+      <div class="card profile-summary-card">
+        <div class="profile-summary-icon"></div>
+        <h3>Your Safety Information</h3>
+        <p>Keeping an emergency contact on your profile is mandatory for DERMAMIND's patient-safety workflow.</p>
+        <div id="profileSummary" class="profile-summary-list"><p class="text-muted">Complete your personal details to see a summary here.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODEL PERFORMANCE (Phase 8 / Phase 28) -->
+  <section id="modelPerformance" class="section">
+    <h2>📈 Model Performance</h2>
+    <p class="subtitle">Real, independently-measured evaluation results for the AI model currently in use.</p>
+
+    <div class="card mp-disclaimer">
+      <strong>Model evaluation results — not a patient's individual prediction accuracy.</strong>
+      <p>These numbers come from running the actual AI model against a real, labeled test set and comparing every prediction to the correct answer. They describe how the model performs in general, not how confident it is about any one person's scan. This is a technical evaluation, not a clinical validation study.</p>
+    </div>
+
+    <div class="card">
+      <h3>Overall</h3>
+      <div class="mp-stats-grid" id="mpOverallStats"></div>
+      <p class="result-subtext" id="mpTestSetInfo"></p>
+    </div>
+
+    <div class="card">
+      <h3>Per-class results</h3>
+      <div class="mp-table-wrap">
+        <table class="mp-table">
+          <thead>
+            <tr><th>Class</th><th>Test images</th><th>Precision</th><th>Recall</th><th>F1</th><th>Specificity</th><th>AUC</th></tr>
+          </thead>
+          <tbody id="mpPerClassBody"></tbody>
+        </table>
+      </div>
+      <p class="result-subtext">Classes with very few test images (marked below) don't have statistically reliable numbers — treat those as illustrative, not solid.</p>
+    </div>
+
+    <div class="card">
+      <h3>Confusion matrix</h3>
+      <p class="result-subtext">Rows = the correct answer. Columns = what the AI predicted. The diagonal is correct predictions.</p>
+      <div class="mp-table-wrap" id="mpConfusionMatrix"></div>
+    </div>
+
+    <div class="card">
+      <h3>Important limitations</h3>
+      <ul class="mp-limitations" id="mpLimitations"></ul>
+    </div>
+
+    <p class="result-subtext" id="mpGeneratedAt"></p>
+  </section>
+
+  <!-- APPOINTMENTS -->
+  <section id="appointments" class="section">
+    <h2>📅 Book Appointment</h2>
+
+    <div class="appointments-container">
+      <div class="card booking-card">
+        <h3>New Appointment</h3>
+        <form id="appointmentForm">
+          <div class="form-group">
+            <label>Hospital / Clinic</label>
+            <select id="hospitalSelect">
+              <option value="">Detect your location first...</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Patient Name</label>
+              <input type="text" id="pname" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label>Contact Number</label>
+              <input type="tel" id="phone" placeholder="Enter phone number" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+              <label>Time</label>
+              <input type="time" id="time" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Notes (Optional)</label>
+            <textarea id="notes" rows="2" placeholder="Additional notes..."></textarea>
+          </div>
+          <button type="submit" id="bookBtn" class="book-btn">Confirm Booking</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>My Appointments</h3>
+        <div id="appointmentList"></div>
+        <h3 class="consultations-heading">My Dermatologist Consultations</h3>
+        <div id="consultationList"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<!-- SCAN HISTORY DETAIL MODAL (Phase 9) -->
+<div id="historyDetailOverlay" class="history-modal-overlay hidden">
+  <div class="history-modal">
+    <button class="history-modal-close" type="button" onclick="closeHistoryDetail()" aria-label="Close">&times;</button>
+    <div id="historyDetailContent"></div>
+  </div>
+</div>
+
+<!-- DERMATOLOGIST CONSULTATION MODAL -->
+<div id="consultationModal" class="consultation-modal" aria-hidden="true">
+  <div class="consultation-dialog" role="dialog" aria-modal="true" aria-labelledby="consultationTitle">
+    <button type="button" class="consultation-close" onclick="closeConsultationModal()" aria-label="Close">&times;</button>
+    <div class="consultation-modal-header">
+      <span class="consultation-icon">👨‍⚕️</span>
+      <div>
+        <h2 id="consultationTitle">Dermatologist Consultation</h2>
+        <p id="consultationHospitalName">Select a nearby dermatologist</p>
+      </div>
+    </div>
+    <form id="consultationForm" class="consultation-form">
+      <input type="hidden" id="consultationHospital">
+      <div class="consultation-type-grid">
+        <label class="consultation-type-card active">
+          <input type="radio" name="consultationType" value="Video Consultation" checked>
+          <span>📹</span><strong>Video</strong><small>Face-to-face online</small>
+        </label>
+        <label class="consultation-type-card">
+          <input type="radio" name="consultationType" value="Audio Consultation">
+          <span></span><strong>Audio</strong><small>Voice consultation</small>
+        </label>
+        <label class="consultation-type-card">
+          <input type="radio" name="consultationType" value="Chat Consultation">
+          <span>💬</span><strong>Chat</strong><small>Text with a specialist</small>
+        </label>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="consultationName">Patient Name</label><input id="consultationName" required></div>
+        <div class="form-group"><label for="consultationPhone">Contact Number</label><input id="consultationPhone" type="tel" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="consultationDate">Date</label><input id="consultationDate" type="date" required></div>
+        <div class="form-group"><label for="consultationTime">Time</label><input id="consultationTime" type="time" required></div>
+      </div>
+      <div class="form-group"><label for="consultationNotes">What would you like to discuss?</label><textarea id="consultationNotes" rows="3" placeholder="Describe your concern briefly..."></textarea></div>
+      <label class="consultation-consent"><input type="checkbox" id="consultationConsent" required> I understand this is a consultation request and not an emergency service.</label>
+      <button type="submit" class="book-btn">Request Consultation</button>
+    </form>
+  </div>
+</div>
+
+<div id="mobileNavOverlay" class="mobile-nav-overlay"></div>
+
+<!-- CHATBOT -->
+<button id="chatToggle" class="chat-toggle">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+</button>
+
+<div id="chatbot" class="chatbot">
+  <div class="chatbot-header">
+    <div class="avatar">🤖</div>
+    <div><div class="title">Dermamind</div><div class="status">Online</div></div>
+  </div>
+  <div id="chatMessages"></div>
+  <div class="chatInput">
+    <input id="chatText" placeholder="Ask questions...">
+    <button id="sendChat">➤</button>
+  </div>
+</div>
+
+<script src="google-places-config.js"></script>
+<script src="api-client.js?v=phase2"></script>
+<script src="image-validation.js?v=phase4"></script>
+<script src="xai.js?v=phase7"></script>
+<script src="model-performance-data.js?v=phase8"></script>
+<script src="script.js?v=20260902otp4"></script>
+<script src="voice-assistant.js?v=feature11"></script>
+<script>
+// PWA Install Prompt
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'flex';
+});
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      }
+      deferredPrompt = null;
+    });
+  } else {
+    alert('To install the app:\n\n• Desktop: Click the install icon in your browser\'s address bar\n• Mobile: Tap "Add to Home Screen" from browser menu');
+  }
+}
+</script>
+</body>
