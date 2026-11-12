@@ -11,5 +11,5 @@
  * / hackathon demo with a browser-restricted key.
  */
 window.DERMAMIND_CONFIG = {
-  GOOGLE_PLACES_API_KEY: 'AIzaSyCuUamxd4egk9KzF6-AVOSDYMS2BBJkR9c'
+  GOOGLE_PLACES_API_KEY: 'YOUR API_KEY'
 };
